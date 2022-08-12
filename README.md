@@ -11,8 +11,19 @@
 
 >mysql
 
-
     docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:8.0.29
 
-
+    [root@master ~]# docker exec -it mysql bash
+    
+    bash-4.4# mysql -p123
+    
+    mysql> create database `blog-microservice`;
+    
+    mysql> use mysql;
+    
+    mysql> select host,user from user;
+    
+    mysql> ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123';
+    
+    mysql> flush privileges;
 
