@@ -10,4 +10,9 @@
 * blog-service-comment: 评价服务，在内网环境中提供rest api，数据库为mongodb（blog-microservice）
 
 >mysql
-docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:8.0.29
+
+
+    docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:8.0.29
+
+
+
