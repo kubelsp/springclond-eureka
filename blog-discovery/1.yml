@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: eureka
+spec:
+  serviceName: eureka
+  replicas: 3
+  selector:
+    matchLabels:
+      app: eureka
+  template:
+    metadata:
+      labels:
+        app: eureka
+    spec:
+      containers:
+        - name: eureka
+          image: blog-discovery:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 8000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka
+  labels:
+    app: eureka
+spec:
+  clusterIP: None
+  ports:
+    - port: 8000
+      name: eureka
+  selector:
+    app: eureka
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka-lb
+  labels:
+    app: eureka
+spec:
+  selector:
+    app: eureka
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 8000

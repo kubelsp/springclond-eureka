@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog-service-comment
+  labels:
+    app: blog-service-comment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blog-service-comment
+  template:
+    metadata:
+      labels:
+        app: blog-service-comment
+    spec:
+      containers:
+        - name: blog-service-comment
+          image: blog-service-comment:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9003
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blog-service-comment
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 9003
+      protocol: TCP
+  selector:
+    app: blog-service-comment

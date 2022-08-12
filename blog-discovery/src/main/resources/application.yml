@@ -1,0 +1,17 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: blog-discovery
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8000/eureka,http://eureka-1.eureka.default.svc.cluster.local:8000/eureka,http://eureka-2.eureka.default.svc.cluster.local:8000/eureka
+
+spring.cloud.config.discovery.enabled: true

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog-service-user
+  labels:
+    app: blog-service-user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blog-service-user
+  template:
+    metadata:
+      labels:
+        app: blog-service-user
+    spec:
+      containers:
+        - name: blog-service-user
+          image: blog-service-user:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9001
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blog-service-user
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 9001
+      protocol: TCP
+  selector:
+    app: blog-service-user
