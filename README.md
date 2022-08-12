@@ -9,7 +9,7 @@
 * blog-service-post：博客服务，在内网环境中提供rest api，数据库为mongodb（blog-microservice）
 * blog-service-comment: 评价服务，在内网环境中提供rest api，数据库为mongodb（blog-microservice）
 
->mysql
+>MySQL
 
     docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123 mysql:8.0.29
 
@@ -26,4 +26,14 @@
     mysql> ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123';
     
     mysql> flush privileges;
+>MongoDB
 
+    docker run -d --name mongo -p 27017:27017 -v /home/mongo/data:/data/db mongo:4.4.15
+    
+    创建blog-microservice数据库
+    use blog-microservice
+    
+    db.createCollection('user')
+    
+    创建密码和授权
+    db.createUser({user:'blog-microservice',pwd:'123',roles:[{role:'readWrite',db:'blog-microservice'}]})
