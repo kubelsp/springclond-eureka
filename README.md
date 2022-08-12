@@ -1,3 +1,4 @@
+# 原项目地址：https://github.com/fancyyawn/blog-hbs-cloud-microservice-multi-db
 # blog-hbs-cloud-microservice-multi-db
 > 基于SpringCloud的微服务化多人博客，每个服务可根据业务需要使用的不同的数据库。
 
